@@ -1,0 +1,9 @@
+E:\FriendlyFire\Desktop\flopenserver\src\bin\x86\Release\FLServer.exe
+E:\FriendlyFire\Desktop\flopenserver\src\bin\x86\Release\FLServer.pdb
+E:\FriendlyFire\Desktop\flopenserver\src\obj\x86\Release\ResolveAssemblyReference.cache
+E:\FriendlyFire\Desktop\flopenserver\src\obj\x86\Release\FLServer.ControlWindow.resources
+E:\FriendlyFire\Desktop\flopenserver\src\obj\x86\Release\FLServer.Properties.Resources.resources
+E:\FriendlyFire\Desktop\flopenserver\src\obj\x86\Release\FLOpenServer.csproj.GenerateResource.Cache
+E:\FriendlyFire\Desktop\flopenserver\src\obj\x86\Release\FLServer.exe
+E:\FriendlyFire\Desktop\flopenserver\src\obj\x86\Release\FLServer.pdb
+E:\FriendlyFire\Desktop\flopenserver\src\bin\x86\Release\Ionic.Zlib.dll

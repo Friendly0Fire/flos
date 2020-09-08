@@ -1,0 +1,8 @@
+G:\flworks\flopenserver\src_plug\SamplePlugin\obj\Debug\SamplePlugin.csprojResolveAssemblyReference.cache
+G:\flworks\flopenserver\src_plug\SamplePlugin\bin\Debug\SamplePlugin.dll
+G:\flworks\flopenserver\src_plug\SamplePlugin\bin\Debug\SamplePlugin.pdb
+G:\flworks\flopenserver\src_plug\SamplePlugin\bin\Debug\FLServer.exe
+G:\flworks\flopenserver\src_plug\SamplePlugin\bin\Debug\Ionic.Zlib.dll
+G:\flworks\flopenserver\src_plug\SamplePlugin\bin\Debug\FLServer.pdb
+G:\flworks\flopenserver\src_plug\SamplePlugin\obj\Debug\SamplePlugin.dll
+G:\flworks\flopenserver\src_plug\SamplePlugin\obj\Debug\SamplePlugin.pdb

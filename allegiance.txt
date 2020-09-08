@@ -1,0 +1,101 @@
+float    turnToFace(const Vector&       deltaTarget,
+                    float               dt,
+                    IshipIGC*           pship,
+                    ControlData*        controls,
+                    float               skill)
+{
+    float   deltaAngle;
+
+    const IhullTypeIGC* pht = pship->GetHullType();
+
+    assert (controls);
+    controls->jsValues[c_axisRoll] = 0.0f;      //Ships never try to roll
+
+    const Orientation&  myOrientation = pship->GetOrientation();
+    double  cosTurn = myOrientation.CosForward(deltaTarget);
+
+    if (cosTurn <= -0.999)
+    {
+        //Target is almost exactly behind, just yaw
+        //(and assume the time increment is small enough
+        //that yawing at max is appropriate).
+        controls->jsValues[c_axisYaw] = 1.0f;
+        controls->jsValues[c_axisPitch] = 0.0f;
+        deltaAngle = pi;
+    }
+    else
+    {
+        float   yaw;
+        float   pitch;
+
+        if (cosTurn < 0.98)
+        {
+            //Target is somewhere other than in directly in front
+            deltaAngle = (float)acos(cosTurn);
+
+            //Find the vector we'd like to rotate about
+            Vector  twist = CrossProduct(myOrientation.GetBackward(), deltaTarget).Normalize();
+            yaw = -(twist * myOrientation.GetUp()) * deltaAngle;
+            pitch = (twist * myOrientation.GetRight()) * deltaAngle;
+		}
+        else
+        {
+            //The target is almost directly in front of us (within 11 degrees or so)
+            //which would make getting the twist axis above a little dicey
+            //So ... instead ... get the yaw and pitch off of the angles with the right * up
+            yaw   = acos(myOrientation.CosRight(deltaTarget)) - 0.5f * pi;
+            pitch = acos(myOrientation.CosUp(deltaTarget)) - 0.5f * pi;
+
+			// mmf
+			//{
+			//	float check = yaw * yaw + pitch * pitch;
+			//	if (check != check) debugf("common.cpp yaw * yaw + pitch * pitch is a nan\n");
+			//	if (check < 0.0f) debugf("common.cpp yaw * yaw + pitch * pitch is a negative about to sqrt it\n");
+			//}
+
+            deltaAngle = (float)sqrt(yaw * yaw + pitch * pitch);
+        }
+
+        //Adjust the yaw and pitch by the amount we are going to drift (due to our current
+        //turning rates).
+        {
+            float   tm = pship->GetTorqueMultiplier();
+
+            float   mass = pship->GetMass();
+            assert (mass > 0.0f);
+            {
+                float   yawRate = pship->GetCurrentTurnRate(c_axisYaw);
+                yaw -= (float)(skill * fabs(yawRate) * (0.5f * yawRate * mass / (tm * pht->GetTurnTorque(c_axisYaw))));
+            }
+            {
+                float   pitchRate = pship->GetCurrentTurnRate(c_axisPitch);
+                pitch -= (float)(skill * fabs(pitchRate) * (0.5f * pitchRate * mass / (tm * pht->GetTurnTorque(c_axisPitch))));
+            }
+        }
+
+        //How do we want to set the controls so that we will turn to face the desired goal
+        {
+            float   maxYaw = dt * pht->GetMaxTurnRate(c_axisYaw);
+            float   maxPitch = dt * pht->GetMaxTurnRate(c_axisPitch);
+
+            float   y = yaw / maxYaw;
+            float   p = pitch / maxPitch;
+
+            float   d2 = (y * y + p * p);
+            if (d2 > 1.0f)
+            {
+                float   f = (float)(1.0 / sqrt(d2));
+
+                controls->jsValues[c_axisYaw] = y * f;
+                controls->jsValues[c_axisPitch] = p * f;
+            }
+            else
+            {
+                controls->jsValues[c_axisYaw] = y;
+                controls->jsValues[c_axisPitch] = p;
+            }
+        }
+    }
+
+    return deltaAngle;
+}

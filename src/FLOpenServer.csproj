@@ -1,0 +1,232 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>9.0.21022</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{1356594E-BCBA-4122-855A-69799C5588C4}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>FLServer</RootNamespace>
+    <AssemblyName>FLServer</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <FileUpgradeFlags>
+    </FileUpgradeFlags>
+    <UpgradeBackupLocation>
+    </UpgradeBackupLocation>
+    <OldToolsVersion>3.5</OldToolsVersion>
+    <PublishUrl>publish\</PublishUrl>
+    <Install>true</Install>
+    <InstallFrom>Disk</InstallFrom>
+    <UpdateEnabled>false</UpdateEnabled>
+    <UpdateMode>Foreground</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>false</UpdateRequired>
+    <MapFileExtensions>true</MapFileExtensions>
+    <ApplicationRevision>0</ApplicationRevision>
+    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
+    <UseApplicationTrust>false</UseApplicationTrust>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|x86' ">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\x86\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <DebugType>full</DebugType>
+    <PlatformTarget>x86</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|x86' ">
+    <OutputPath>bin\x86\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <Optimize>true</Optimize>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>x86</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Ionic.Zlib, Version=1.9.1.8, Culture=neutral, PublicKeyToken=edbe51ad942a3f5c, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>.\Ionic.Zlib.dll</HintPath>
+    </Reference>
+    <Reference Include="protobuf-net, Version=2.0.0.668, Culture=neutral, PublicKeyToken=257b51d87d2e4d67, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\protobuf-net.2.0.0.668\lib\net40\protobuf-net.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Data.SQLite, Version=1.0.89.0, Culture=neutral, PublicKeyToken=db937bc2d44ff139, processorArchitecture=x86">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\System.Data.SQLite.1.0.89.0\lib\net40\System.Data.SQLite.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Data.SQLite.Linq, Version=1.0.89.0, Culture=neutral, PublicKeyToken=db937bc2d44ff139, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\System.Data.SQLite.1.0.89.0\lib\net40\System.Data.SQLite.Linq.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Xml.Linq">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Data.DataSetExtensions">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Data" />
+    <Reference Include="System.Deployment" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Action.cs" />
+    <Compile Include="AI\AI.cs" />
+    <Compile Include="AI\DebugAI.cs" />
+    <Compile Include="AI\ShipAI.cs" />
+    <Compile Include="AI\SolarAI.cs" />
+    <Compile Include="AppDomain\CustomContext.cs" />
+    <Compile Include="Object\Base\BaseCharacter.cs" />
+    <Compile Include="CharacterDB\AccountStruct.cs" />
+    <Compile Include="CharacterDB\CharacterData.cs" />
+    <Compile Include="CharacterDB\Database.cs" />
+    <Compile Include="CharacterDB\Importer.cs" />
+    <Compile Include="DataWorkers\ArchetypeDB.cs" />
+    <Compile Include="Chat\Chat.cs" />
+    <Compile Include="Chat\Rdl.cs" />
+    <Compile Include="CmpFixData.cs" />
+    <Compile Include="CmpPrisData.cs" />
+    <Compile Include="CmpRevData.cs" />
+    <Compile Include="CmpSphereData.cs" />
+    <Compile Include="Munition\CounterMeasure.cs" />
+    <Compile Include="DirectPlay.cs" />
+    <Compile Include="DPConnectingStates.cs" />
+    <Compile Include="DPInBaseStates.cs" />
+    <Compile Include="Player\DPPlayer.cs" />
+    <Compile Include="DPGameRunner.cs" />
+    <Compile Include="FLFormatString.cs" />
+    <Compile Include="DPServer.cs" />
+    <Compile Include="ControlWindow.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ControlWindow.Designer.cs">
+      <DependentUpon>ControlWindow.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FLDataFile.cs" />
+    <Compile Include="FLDataFileException.cs" />
+    <Compile Include="Chat\FLMsgDecoder.cs" />
+    <Compile Include="FLMsgType.cs" />
+    <Compile Include="DataWorkers\FLUtility.cs" />
+    <Compile Include="Player\Group.cs" />
+    <Compile Include="HardpointData.cs" />
+    <Compile Include="Logging\LogController.cs" />
+    <Compile Include="Logging\Logger.cs" />
+    <Compile Include="Object\Loot.cs" />
+    <Compile Include="Object\Base\Market.cs" />
+    <Compile Include="Matrix.cs" />
+    <Compile Include="Munition\Missile.cs" />
+    <Compile Include="Object\Base\News.cs" />
+    <Compile Include="OrientedBoundingBox.cs" />
+    <Compile Include="Player\PlayerExtensions\WeaponGroup.cs" />
+    <Compile Include="Player\Session.cs" />
+    <Compile Include="Plugins\IFOSPlugin.cs" />
+    <Compile Include="Plugins\PlugNotValidException.cs" />
+    <Compile Include="AppDomain\Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="ControlWindow.resx">
+      <DependentUpon>ControlWindow.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="Quaternion.cs" />
+    <Compile Include="Reputation.cs" />
+    <Compile Include="Object\Ship\DamageListItem.cs" />
+    <Compile Include="Simulators\IUpdatable.cs" />
+    <Compile Include="Simulators\PowerSim.cs" />
+    <Compile Include="Simulators\ShieldGeneratorSim.cs" />
+    <Compile Include="Object\Ship\Ship.cs" />
+    <Compile Include="Object\Ship\ShipItem.cs" />
+    <Compile Include="Object\SimObject.cs" />
+    <Compile Include="Object\Base\BaseData.cs" />
+    <Compile Include="Object\Base\Room.cs" />
+    <Compile Include="Object\Solar\Shape.cs" />
+    <Compile Include="Object\Solar\Solar.cs" />
+    <Compile Include="DataWorkers\SurFile.cs" />
+    <Compile Include="DataWorkers\ThnParse.cs" />
+    <Compile Include="Object\Solar\StarSystem.cs" />
+    <Compile Include="Object\Solar\Zone.cs" />
+    <Compile Include="ThreadEventQueue.cs" />
+    <Compile Include="UniverseDB.cs" />
+    <Compile Include="DataWorkers\UTFFile.cs" />
+    <Compile Include="Utilities.cs" />
+    <Compile Include="Utils\Tuple.cs" />
+    <Compile Include="Vector.cs" />
+    <Compile Include="Waypoint.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="app.config" />
+    <None Include="flopenserver.cfg" />
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <BootstrapperPackage Include="Microsoft.Net.Client.3.5">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1 Client Profile</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="x64\SQLite.Interop.dll">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="x86\SQLite.Interop.dll">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+  <PropertyGroup>
+    <PostBuildEvent>xcopy /Y "$(ProjectDir)flopenserver.cfg" "$(TargetDir)"</PostBuildEvent>
+  </PropertyGroup>
+</Project>

@@ -1,0 +1,878 @@
+Index: src/Action.cs
+===================================================================
+--- src/Action.cs	(revision 854)
++++ src/Action.cs	(working copy)
+@@ -13,6 +13,12 @@
+         public DockingObject DockingObj;
+     }
+ 
++    public class TeleportAction : Action
++    {
++        public Vector position;
++        public StarSystem system;
++    }
++
+     public class TradeLaneAction : Action
+     {
+         public DockingObject DockingObj;
+Index: src/Chat.cs
+===================================================================
+--- src/Chat.cs	(revision 0)
++++ src/Chat.cs	(working copy)
+@@ -0,0 +1,543 @@
++﻿using System;
++using System.Collections.Generic;
++using System.Linq;
++using System.Text;
++
++namespace FLServer
++{
++    public class Rdl
++    {
++        byte[] msg = {};
++
++        public Rdl()
++        {
++
++        }
++
++        public Rdl(uint tra, uint mask, string text)
++        {
++            this.AddTRA(tra, mask);
++            this.AddText(text);
++        }
++
++        public void AddTRA(uint tra, uint mask)
++        {
++            FLMsgType.AddUInt32(ref msg, 0x01);
++            FLMsgType.AddUInt32(ref msg, 0x08); // size of data
++            FLMsgType.AddUInt32(ref msg, tra);
++            FLMsgType.AddUInt32(ref msg, mask);
++        }
++
++        public void AddText(string text)
++        {
++            FLMsgType.AddUInt32(ref msg, 0x02);
++            FLMsgType.AddUInt32(ref msg, 2 + (uint)text.Length * 2);
++            FLMsgType.AddUnicodeStringLen0(ref msg, text + "\0");
++        }
++        
++        public void AddStyle(uint style)
++        {
++            FLMsgType.AddUInt32(ref msg, 0x06); // rdl type of style
++            FLMsgType.AddUInt32(ref msg, 0x02); // size of data
++            FLMsgType.AddUInt16(ref msg, style);
++        }
++
++        public byte[] GetBytes()
++        {
++            return msg;
++        }
++    }
++
++    class Chat
++    {
++        public static void SendChatToPlayer(Player player, string chat)
++        {
++            Rdl rdl = new Rdl();
++            rdl.AddText(chat);
++            SendChatToPlayer(player, rdl);
++        }
++
++        public static void SendChatToPlayer(Player player, Rdl rdl)
++        {
++            byte[] omsg = { 0x05, 0x01 };
++            FLMsgType.AddInt32(ref omsg, rdl.GetBytes().Length);
++            FLMsgType.AddArray(ref omsg, rdl.GetBytes());
++            FLMsgType.AddUInt32(ref omsg, 0);
++            FLMsgType.AddUInt32(ref omsg, 0);
++            player.SendMsgToClient(omsg);
++        }
++
++        public static void SendChatToSystem(DPGameRunner server, uint from, uint to, string chat)
++        {
++
++        }
++
++        public static void SendChatToUniverse(DPGameRunner server, uint from, uint to, string chat)
++        {
++
++        }
++
++        public static void SendChatToGroup(DPGameRunner server, uint from, uint to, string chat)
++        {
++
++        }
++
++        public static Player FindActivePlayerByCharname(DPGameRunner server, string arg, int search_mode)
++        {
++            arg = arg.ToLowerInvariant();
++
++            if (search_mode == 0)
++            {
++                uint id;
++                if (!uint.TryParse(arg, out id))
++                    return null;
++
++                if (!server.playerlist.ContainsKey(id))
++                    return null;
++
++                return server.playerlist[id].player;
++            }
++
++            // Search for an exact match
++            foreach (DPGameRunner.PlayerListItem player in server.playerlist.Values)
++            {
++                if (player.name.ToLowerInvariant() == arg)
++                    return player.player;
++            }
++
++            // Search for a partial match if requested
++            if (search_mode == 1)
++            {
++
++                List<DPGameRunner.PlayerListItem> matches = new List<DPGameRunner.PlayerListItem>();
++                foreach (DPGameRunner.PlayerListItem player in server.playerlist.Values)
++                {
++                    if (player.name.ToLowerInvariant().StartsWith(arg))
++                        matches.Add(player);
++                }
++
++                if (matches.Count == 1)
++                    return matches[0].player;
++            }
++
++            return null;
++        }
++
++        /// <summary>
++        /// Process an admin command.
++        /// </summary>
++        /// <param name="from"></param>
++        /// <param name="to"></param>
++        /// <param name="chat"></param>
++        /// <returns>Returns true if the command was processed and further processing should be stopped</returns>
++        public static bool ProcessAdminCommands(Player from, uint to, string chat)
++        {
++            // If this is an admin command and the player has admin permissions
++            // then dispatch
++            if (chat[0] == '.')
++            {
++                // Echo the chat back to the player.
++                SendChatToPlayer(from, chat);
++
++                string[] args = chat.Split(' ');
++
++                // Figure out if the charname argument for the command is for
++                // a partial, FL ID match or exact match.
++                int search_mode = 2;
++                if (args.Length > 0 && args[0].EndsWith("&"))
++                {
++                    args[0] = args[0].Substring(0, args[0].Length - 1);
++                    search_mode = 1;
++                }
++                else if (args.Length > 0 && args[0].EndsWith("$"))
++                {
++                    args[0] = args[0].Substring(0, args[0].Length - 1);
++                    search_mode = 0;
++                }
++
++                if (args.Length == 1 && args[0] == ".path")
++                {
++                    List<Waypoint> path = new List<Waypoint>();
++                    path.Add(new Waypoint(new Vector(-29292, -892, -27492), 0, FLUtility.CreateID("li01")));
++                    path.Add(new Waypoint(new Vector(-30689, -600, -28092), 0, FLUtility.CreateID("li01")));
++                    path.Add(new Waypoint(new Vector(-33021, -124, -27880), 0, FLUtility.CreateID("li01")));
++                    path.Add(new Waypoint(new Vector(-35185, -138, -26487), 0, FLUtility.CreateID("li01")));
++                    {
++                        byte[] omsg = { 0x16, 0x01 };
++                        FLMsgType.AddUInt32(ref omsg, (uint)(3 * sizeof(uint) + path.Count * (3 * sizeof(float) + 2 * sizeof(uint))));
++                        FLMsgType.AddUInt32(ref omsg, 0);
++                        FLMsgType.AddUInt32(ref omsg, (uint)path.Count);
++                        FLMsgType.AddUInt32(ref omsg, 0);
++
++                        foreach (Waypoint wp in path)
++                        {
++                            FLMsgType.AddFloat(ref omsg, (float)wp.position.x);
++                            FLMsgType.AddFloat(ref omsg, (float)wp.position.y);
++                            FLMsgType.AddFloat(ref omsg, (float)wp.position.z);
++
++                            FLMsgType.AddUInt32(ref omsg, wp.objid);
++                            FLMsgType.AddUInt32(ref omsg, wp.systemid);
++                        }
++
++                        from.SendMsgToClient(omsg);
++                    }
++                }
++
++                // Process the command.
++                if (args.Length == 3 && args[0] == ".beam")
++                {
++                    Player player = FindActivePlayerByCharname(from.runner, args[1], search_mode);
++                    if (player == null)
++                    {
++                        SendChatToPlayer(from, "ERR charname not found");
++                        return true;
++                    }
++
++                    string basename = args[2];
++                    BaseData basedata = UniverseDB.FindBase(basename);
++                    if (basedata == null)
++                    {
++                        SendChatToPlayer(from, "ERR base not found");
++                        return true;
++                    }
++
++                    if (player.ship.basedata != null)
++                    {
++                        SendChatToPlayer(from, "ERR player not in space");
++                        return true;
++                    }
++
++
++                    player.runner.AddEvent(new DPGRBeam(player, basedata));
++                    SendChatToPlayer(from, "OK"); // fixme: need feedback.
++                }
++                else if (args.Length > 2 && args[0] == ".tp")
++                {
++                    Player player = FindActivePlayerByCharname(from.runner, args[1], search_mode);
++                    if (player == null)
++                    {
++                        SendChatToPlayer(from, "ERR charname not found");
++                        return true;
++                    }
++
++                    Vector position = player.ship.position;
++
++                    if (args.Length >= 5)
++                        position = new Vector(Single.Parse(args[2]), Single.Parse(args[3]), Single.Parse(args[4]));
++
++                    StarSystem systemdata = null;
++                    if (args.Length == 5)
++                        systemdata = player.ship.system;
++                    else
++                    {
++                        string systemname = args[args.Length - 1];
++                        systemdata = UniverseDB.FindSystem(systemname);
++                    }
++
++                    if (systemdata == null)
++                    {
++                        SendChatToPlayer(from, "ERR system not found");
++                        return true;
++                    }
++
++                    if (player.ship.basedata != null)
++                    {
++                        SendChatToPlayer(from, "ERR player not in space");
++                        return true;
++                    }
++
++                    player.runner.AddEvent(new DPGRTeleport(player, position, systemdata));
++                    SendChatToPlayer(from, "OK"); // fixme: need feedback.
++                }
++                else if (args.Length == 3 && args[0] == ".addcash")
++                {
++                    Player player = FindActivePlayerByCharname(from.runner, args[1], search_mode);
++                    if (player == null)
++                    {
++                        SendChatToPlayer(from, "ERR charname not found");
++                        return true;
++                    }
++
++                    int money = 0;
++                    if (!Int32.TryParse(args[2], out money))
++                    {
++                        SendChatToPlayer(from, "ERR invalid money");
++                        return true;
++                    }
++
++                    player.runner.AddEvent(new DPGRAddCash(player, money));
++                    SendChatToPlayer(from, "OK");
++                    // fixme: SendChatToPlayer(from, "OK cash=" + player.money);
++                }
++                else if (args.Length == 3 && args[0] == ".setcash")
++                {
++                    Player player = FindActivePlayerByCharname(from.runner, args[1], search_mode);
++                    if (player == null)
++                    {
++                        SendChatToPlayer(from, "ERR charname not found");
++                        return true;
++                    }
++
++                    int money = 0;
++                    if (!Int32.TryParse(args[2], out money))
++                    {
++                        SendChatToPlayer(from, "ERR invalid money");
++                        return true;
++                    }
++
++                    player.runner.AddEvent(new DPGRSetCash(player, money));
++                    SendChatToPlayer(from, "OK");
++                    // fixme: SendChatToPlayer(from, "OK cash=" + player.money);
++                }
++                else if (args.Length == 3 && args[0] == ".setcash")
++                {
++                    Player player = FindActivePlayerByCharname(from.runner, args[1], search_mode);
++                    if (player == null)
++                    {
++                        SendChatToPlayer(from, "ERR charname not found");
++                        return true;
++                    }
++
++                    int money = Int32.Parse(args[2]);
++                    player.money += money;
++                    player.SendSetMoney();
++
++                    SendChatToPlayer(from, "OK cash=" + player.money);
++                }
++                else if (args.Length == 3 && args[0] == ".getrep")
++                {
++                    Player player = FindActivePlayerByCharname(from.runner, args[1], search_mode);
++                    if (player == null)
++                    {
++                        SendChatToPlayer(from, "ERR charname not found");
++                        return true;
++                    }
++                    
++                    string factionname = args[2];
++                    Faction faction = UniverseDB.FindFaction(factionname);
++                    if (faction == null)
++                    {
++                        SendChatToPlayer(from, "ERR not found faction=" + factionname);
++                        return true;
++                    }
++
++                    float attitude = player.ship.GetAttitudeTowardsFaction(faction);
++                    SendChatToPlayer(from, "OK faction=" + factionname + " rep=" + attitude);
++                }
++                else if (args.Length == 4 && args[0] == ".setrep")
++                {
++                    Player player = FindActivePlayerByCharname(from.runner, args[1], search_mode);
++                    if (player == null)
++                    {
++                        SendChatToPlayer(from, "ERR charname not found");
++                        return true;
++                    }
++
++                    string factionname = args[2];
++                    Faction faction = UniverseDB.FindFaction(factionname);
++                    if (faction == null)
++                    {
++                        SendChatToPlayer(from, "ERR not found faction=" + factionname);
++                        return true;
++                    }
++
++                    float attitude = 0;
++                    if (!float.TryParse(args[3], out attitude))
++                    {
++                        SendChatToPlayer(from, "ERR invalid rep=" + args[3]);
++                        return true;
++                    }
++
++                    player.ship.SetReputation(faction, attitude);
++                    SendChatToPlayer(from, "OK faction=" + faction.nickname + " rep=" + player.ship.GetAttitudeTowardsFaction(faction));
++                }
++                else if (args.Length == 3 && args[0] == ".setrept")
++                {
++                    Player player = FindActivePlayerByCharname(from.runner, args[1], search_mode);
++                    if (player == null)
++                    {
++                        SendChatToPlayer(from, "ERR charname not found");
++                        return true;
++                    }
++
++                    float attitude = 0;
++                    if (!float.TryParse(args[2], out attitude))
++                    {
++                        SendChatToPlayer(from, "ERR invalid rep=" + args[3]);
++                        return true;
++                    }
++
++                    Solar solar = UniverseDB.FindSolar(player.ship.target_objid);
++                    if (solar != null)
++                    {
++                        SendChatToPlayer(from, "OK solar=" + solar.faction + " rep=" + attitude);
++                        player.ship.SetReputation(solar.faction, attitude);
++                        return true;
++                    }
++
++                    SendChatToPlayer(from, "ERR only solar's supported cause I was lazy");
++                }
++                else if (args.Length == 2 && args[0] == ".kill")
++                {
++                    Player player = FindActivePlayerByCharname(from.runner, args[1], search_mode);
++                    if (player == null)
++                    {
++                        SendChatToPlayer(from, "ERR charname not found");
++                        return true;
++                    }
++
++                    if (player.ship.basedata != null)
++                    {
++                        SendChatToPlayer(from, "ERR player not in space");
++                        return true;
++                    }
++
++                    player.ship.Destroy();
++                    SendChatToPlayer(from, "OK");
++                }
++                else if (args.Length == 4 && args[0] == ".move")
++                {
++                    float x=0;
++                    float y=0;
++                    float z=0;
++                    if (!float.TryParse(args[1], out x)
++                        || !float.TryParse(args[2], out y)
++                        || !float.TryParse(args[3], out z))
++                    {
++                        SendChatToPlayer(from, String.Format("ERR invalid position={0:0} {1:0} {2:0}", x, y, z));
++                        return true;
++                    }
++
++                    LaunchInSpaceAction dummy_action = new LaunchInSpaceAction();
++                    dummy_action.position = new Vector(x, y, z);
++                    dummy_action.orientation = Quaternion.MatrixToQuaternion(from.ship.orientation);
++                    from.ship.current_action = dummy_action;
++                    from.SendServerLaunch();
++                    from.ship.current_action = null;
++                    SendChatToPlayer(from, String.Format("OK position={0:0} {1:0} {2:0}", x, y, z));
++
++                }
++                else if (args.Length == 1 && args[0] == ".help")
++                {
++                    from.SendInfocardUpdate(500000, "Admin Commands");
++                    from.SendInfocardUpdate(500001, from.runner.server.admin_help_msg); // fixme: crash!?
++                    from.SendPopupDialog(new FLFormatString(500000), new FLFormatString(500001),
++                        Player.PopupDialogButtons.POPUPDIALOG_BUTTONS_CENTER_OK);
++                }
++                else
++                {
++                    SendChatToPlayer(from, "ERR command invalid, type .help for valid commands");                                       
++                }
++                return true;
++            }
++            return false;
++        }
++        
++
++        public static bool ProcessUserCommands(Player from, uint to, string chat)
++        {
++            // If this is a player command then process it
++            if (chat[0] == '/')
++            {
++                // Echo the chat back to the player.
++                SendChatToPlayer(from, chat);
++                
++                string[] args = chat.Split(' ');
++                if (args.Length == 1 && args[0] == "/ping")
++                {
++                    SendChatToPlayer(from, "OK " + from.runner.server.GetConnectionInformation(from));
++                }
++                else if (args.Length == 1 && args[0] == "/pos")
++                {
++                    SendChatToPlayer(from, String.Format("OK pos = {0} {1} {2}",
++                        from.ship.position.x, from.ship.position.y, from.ship.position.z));
++                }
++                else if (args.Length == 1 && args[0] == "/help")
++                {
++                    from.SendInfocardUpdate(500000, "User Commands");
++                    from.SendInfocardUpdate(500001, from.runner.server.user_help_msg);
++                    from.SendPopupDialog(new FLFormatString(500000), new FLFormatString(500001),
++                        Player.PopupDialogButtons.POPUPDIALOG_BUTTONS_CENTER_OK);
++                }
++                else
++                {
++                    SendChatToPlayer(from, "ERR command invalid, type /help for valid commands");             
++                }
++
++
++                return true;
++            }
++            return false;
++        }
++
++        public static void Process(Player from, uint to, string chat)
++        {
++            if (ProcessAdminCommands(from, to, chat))
++                return;
++
++            if (ProcessUserCommands(from, to, chat))
++                return;
++
++            // to = 0 = console
++            //to & 0xFFFF
++            if (to == 0)
++            {
++                // console
++            }
++            else if (to > 0 && to < 0x10000)
++            {
++                if (from.runner.playerlist.ContainsKey(to))
++                {
++                    Player toplayer = from.runner.playerlist[to].player;
++
++                    Rdl rdl = new Rdl();
++                    rdl.AddTRA(0xFFFFFF00, 0xFFFFFFFF);
++                    rdl.AddText(from.name + ": ");
++                    rdl.AddTRA(0x19BD3A00, 0xFFFFFFFF);
++                    rdl.AddText(chat);
++                    SendChatToPlayer(from, rdl);
++                    SendChatToPlayer(toplayer, rdl);
++                }
++
++                // private
++            }
++            else if (to == 0x10001)
++            {
++                // system
++                Rdl rdl = new Rdl();
++                rdl.AddTRA(0xFFFFFF00, 0xFFFFFFFF);
++                rdl.AddText(from.name + ": ");
++                rdl.AddTRA(0xFF8F4000, 0xFFFFFFFF);
++                rdl.AddText(chat);
++
++                foreach (Player toplayer in from.runner.players.Values)
++                {
++                    if (toplayer.ship.system == from.ship.system)
++                    {
++                        SendChatToPlayer(toplayer, rdl);
++                    }
++                }
++            }
++            else if (to == 0x10003)
++            {
++                // group
++
++                if(from.group == null)
++                {
++                    return;
++                }
++
++                Rdl rdl = new Rdl();
++                rdl.AddTRA(0xFFFFFF00, 0xFFFFFFFF);
++                rdl.AddText(from.name + ": ");
++                rdl.AddTRA(0xFF7BFF00, 0xFFFFFFFF);
++                rdl.AddText(chat);
++
++                foreach (Player toplayer in from.group.members)
++                {
++                    SendChatToPlayer(toplayer, rdl);
++                }
++            }
++        }
++    }
++}
+Index: src/DPGameRunner.cs
+===================================================================
+--- src/DPGameRunner.cs	(revision 854)
++++ src/DPGameRunner.cs	(working copy)
+@@ -259,6 +259,26 @@
+                         revent.player.Runner.Server.AddEvent(new DPGameRunnerPlayerUpdateEvent(revent.player));
+                     }
+                 }
++                else if (next_event is DPGRTeleport)
++                {
++                    DPGRTeleport revent = next_event as DPGRTeleport;
++                    if (revent.player.runner != this)
++                    {
++                        log.AddLog(LogType.FL_MSG, "Warning: requeued rx msg onto changed runner");
++                        revent.player.runner.AddEvent(revent);
++                    }
++                    else
++                    {
++                        TeleportAction action = new TeleportAction();
++                        action.position = revent.target_location;
++                        action.system = revent.target_system;
++
++                        revent.player.ship.current_action = action;
++
++                        if(action.system != revent.player.ship.system)
++                            revent.player.SendForceChangeSystem(revent.target_system.systemid);
++                    }
++                }
+             }
+         }
+ 
+@@ -1109,4 +1129,23 @@
+             this.target_base = target_base;
+         }
+     }
+-}
+\ No newline at end of file
++<<<<<<< .mine
++
++    class DPGRTeleport : ReactorEvent
++    {
++        public Player player;
++        public Vector target_location;
++        public StarSystem target_system;
++
++        public DPGRTeleport(Player player, Vector target_location, StarSystem target_system)
++        {
++            this.player = player;
++            this.target_location = target_location;
++            this.target_system = target_system;
++        }
++    }
++
++
++}
++=======
++}>>>>>>> .r854
+Index: src/DPInBaseStates.cs
+===================================================================
+--- src/DPInBaseStates.cs	(revision 854)
++++ src/DPInBaseStates.cs	(working copy)
+@@ -333,6 +333,140 @@
+ 
+         private void RxActivateEquip(Player player, byte[] msg)
+         {
++<<<<<<< .mine
++            // FLPACKET_COMMON_CHATMSG
++            int pos = 2;
++            uint len = FLMsgType.GetUInt32(msg, ref pos);
++
++            int posEnd = (int)len + pos;
++            uint to = FLMsgType.GetUInt32(msg, ref posEnd);
++            uint from = FLMsgType.GetUInt32(msg, ref posEnd);
++
++            switch (to)
++            {
++
++                case 0x10000: // universe chat
++                case 0x10001: // system chat
++                case 0x10002: // local chat
++                case 0x10003: // group chat
++                default: // private chat
++                    break;
++
++                case 0x10004: // group commands
++                    var command = (Player.ChatCommand)FLMsgType.GetUInt32(msg, ref pos);
++                    uint flplayerid = FLMsgType.GetUInt32(msg, ref pos);
++                    player.log.AddLog(LogType.FL_MSG, "rx FLPACKET_COMMON_CHATMSG command={0} flplayerid={1} to={2} from={3}",
++                        command, flplayerid, to, from);
++                    switch (command)
++                    {
++                        case Player.ChatCommand.GROUPINVITEREQUEST:
++                            this.HandleGroupInviteRequest(player, player.runner.GetPlayer(flplayerid));
++                            break;
++                        case Player.ChatCommand.GROUPINVITATIONACCEPTEDREQUEST:
++                            this.HandleGroupInvitationAcceptedRequest(player, player.runner.GetPlayer(flplayerid));
++                            break;
++                        case Player.ChatCommand.GROUPLEAVEREQUEST:
++                            this.HandleGroupLeaveRequest(player);
++                            break;
++                        default:
++                            break;
++                    }
++                    return;
++            }
++
++            if (to <= 0x10003)
++            {
++                string chat = "";
++                while (len != 0)
++                {
++                    uint rdl = FLMsgType.GetUInt32(msg, ref pos);
++                    uint siz = FLMsgType.GetUInt32(msg, ref pos);
++                    switch (rdl)
++                    {
++                        case 2: // text
++                            chat += new System.Text.UnicodeEncoding().GetString(msg, pos, (int)siz - 2);
++                            pos += (int)siz;
++                            break;
++                        default: // just ignore 'em
++                            pos += (int)siz;
++                            break;
++                    }
++                    len -= 8 + siz;
++                }
++
++                player.log.AddLog(LogType.FL_MSG, "rx FLPACKET_COMMON_CHATMSG to={0} from={1} chat={2}",
++                    to, from, chat);
++                Chat.Process(player, to, chat);
++            }
++            else if (to > 0x10004)
++            {
++                byte[] submsg = new byte[len];
++                Array.Copy(msg, pos, submsg, 0, len);
++                RxSpecialMsgFromClient(player, submsg, to);
++            }
++        }
++
++        void RxSpecialMsgFromClient(Player player, byte[] msg, uint type)
++        {
++            switch (type)
++            {
++                default:
++                    break;
++            }
++        }
++
++        private void HandleGroupLeaveRequest(Player player)
++        {
++            if (player == null || player.group == null)
++            {
++                return;
++            }
++
++            player.group.Leave(player);
++            player.group = null;
++            player.Update();
++        }
++
++        private void HandleGroupInvitationAcceptedRequest(Player player, Player playerInviter)
++        {
++            if (player == null || player.groupInvited == null || playerInviter == null)
++            {
++                return;
++            }
++
++            player.group = player.groupInvited;
++            player.group.InviteAccepted(player, playerInviter);
++            player.groupInvited = null;
++            player.Update();
++        }
++
++        private void HandleGroupInviteRequest(Player playerFrom, Player playerTo)
++        {
++            if(playerFrom == null || playerTo == null)
++            {
++                return;
++            }
++
++            if(playerFrom.group == null)
++            {
++                var group = new Group();
++                group.AddPlayer(playerFrom);
++                playerFrom.group = group;
++                playerFrom.Update();
++            }
++
++            playerFrom.SendChatCommand(Player.ChatCommand.GROUPINVITATIONSENT, playerTo.flplayerid);
++            playerTo.SendChatCommand(Player.ChatCommand.GROUPINVITATIONRECEIVED, playerFrom.flplayerid);
++            playerTo.groupInvited = playerFrom.group;
++            playerTo.Update();
++        }
++
++        #endregion
++
++        void RxActivateEquip(Player player, byte[] msg)
++        {
++=======
++>>>>>>> .r854
+             // FLPACKET_COMMON_ACTIVATEEQUIP
+             int pos = 2;
+             uint objid = FLMsgType.GetUInt32(msg, ref pos);
+@@ -1092,6 +1226,22 @@
+ 
+                 player.Runner.Server.AddEvent(new DPGameRunnerPlayerUpdateEvent(player));
+             }
++<<<<<<< .mine
++            else if (player.ship.current_action is TeleportAction)
++            {
++                TeleportAction action = player.ship.current_action as TeleportAction;
++                player.ship.system = action.system;
++                player.ship.current_action = null;
++                player.SaveCharFile();
++
++                player.runner.server.AddEvent(new DPGameRunnerPlayerUpdateEvent(player));
++            }
++            else
++            {
++                // fixme: kick, invalid state
++            }
++=======
++>>>>>>> .r854
+         }
+ 
+         private void RxGoodSell(Player player, byte[] msg)
+@@ -1406,6 +1556,34 @@
+                 foreach (Solar.Solar solar in player.ship.System.solars.Values)
+                     player.SendSetReputation(solar);
+             }
++<<<<<<< .mine
++            else if (player.ship.current_action is TeleportAction)
++            {
++                TeleportAction action = player.ship.current_action as TeleportAction;
++
++                player.ship.position = action.position;
++                if (action.system != player.ship.system)
++                {
++                    player.ship.system = action.system;
++
++                    // Send reputation updates for all solars in the system.
++                    foreach (Solar solar in player.ship.system.solars.Values)
++                        player.SendSetReputation(solar);
++                }
++
++                player.SendSystemSwitchIn(player.ship);
++
++                //player.ship.current_action = null;
++                //player.SaveCharFile();
++
++                player.runner.server.AddEvent(new DPGameRunnerPlayerUpdateEvent(player));
++            }
++            else
++            {
++                // fixme: kick, invalid state
++            }
++=======
++>>>>>>> .r854
+         }
+ 
+         public void RxObjectCollision(Player player, byte[] msg)
+Index: src/DPPlayer.cs
+===================================================================
+--- src/DPPlayer.cs	(revision 854)
++++ src/DPPlayer.cs	(working copy)
+@@ -718,9 +718,15 @@
+ 
+         public void SendChatCommand(ChatCommand command, uint playerId)
+         {
++<<<<<<< .mine
++            byte[] omsg = { 0x05, 0x01, 0x08, 0x00, 0x00, 0x00 };
++
++            FLMsgType.AddUInt32(ref omsg, (uint)command);
++=======
+             byte[] omsg = {0x05, 0x01, 0x08, 0x00, 0x00, 0x00};
+ 
+             FLMsgType.AddUInt32(ref omsg, (uint) command);
++>>>>>>> .r854
+             FLMsgType.AddUInt32(ref omsg, playerId);
+             FLMsgType.AddUInt32(ref omsg, FLPlayerID);
+             FLMsgType.AddUInt32(ref omsg, 0x10004);
+@@ -728,6 +734,18 @@
+             SendMsgToClient(omsg);
+         }
+ 
++
++        public void SendChatSpecialMessage(byte[] msg, uint playerId)
++        {
++            byte[] omsg = { 0x05, 0x01 };
++            FLMsgType.AddUInt32(ref omsg, (uint)msg.Length);
++            FLMsgType.AddArray(ref omsg, msg);
++            FLMsgType.AddUInt32(ref omsg, this.flplayerid);
++            FLMsgType.AddUInt32(ref omsg, playerId);
++
++            SendMsgToClient(omsg);
++        }
++
+         /// <summary>
+         ///     Send an infocard update to the client using the dsace protocol.
+         /// </summary>
+@@ -1271,6 +1289,13 @@
+             SendMsgToClient(omsg);
+         }
+ 
++        public void SendForceChangeSystem(uint systemid)
++        {
++            byte[] omsg = {};
++            FLMsgType.AddUInt32(ref omsg, systemid);
++            SendChatSpecialMessage(omsg, 0x30001);
++        }
++
+         // FLPACKET_SERVER_SETHULLSTATUS
+         public void SendSetHullStatus(Ship.Ship ship)
+         {

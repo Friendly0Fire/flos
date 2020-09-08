@@ -1,0 +1,8 @@
+E:\FriendlyFire\Desktop\flopenserver\src\bin\Debug\FLServer.exe
+E:\FriendlyFire\Desktop\flopenserver\src\bin\Debug\FLServer.pdb
+E:\FriendlyFire\Desktop\flopenserver\src\obj\Debug\ResolveAssemblyReference.cache
+E:\FriendlyFire\Desktop\flopenserver\src\obj\Debug\FLServer.ControlWindow.resources
+E:\FriendlyFire\Desktop\flopenserver\src\obj\Debug\FLServer.Properties.Resources.resources
+E:\FriendlyFire\Desktop\flopenserver\src\obj\Debug\FLOpenServer.csproj.GenerateResource.Cache
+E:\FriendlyFire\Desktop\flopenserver\src\obj\Debug\FLServer.exe
+E:\FriendlyFire\Desktop\flopenserver\src\obj\Debug\FLServer.pdb

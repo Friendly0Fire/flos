@@ -1,0 +1,1207 @@
+23:34:51.621: FLPACKET_SERVER_CONNECTRESPONSE, offset = 0x12, size = 4
+              To: 1
+	response = 1
+
+23:34:51.621: FLPACKET_SERVER_MISCOBJUPDATE, offset = 0x24, size = 4
+              To: 1
+	flag    = 0x0010
+	news    = <empty>
+
+23:34:53.118: FLPACKET_CLIENT_LOGIN, offset = 0x36, size = 73
+              From: 1
+	u_byte  = 1
+	account = de8deafc-62a2157e-49e6f535-d19c550a
+
+23:34:53.119: FLPACKET_SERVER_LOGINRESPONSE, offset = 0x8D, size = 1
+              To: 1
+	response = 3
+
+23:34:53.154: FLPACKET_CLIENT_REQUESTCHARINFO, offset = 0x9C, size = 0
+              From: 1
+
+23:34:53.154: FLPACKET_SERVER_CHARACTERINFO, offset = 0xAA, size = 790
+              To: 1
+	Character 1
+	file           = 02-3fc00078.fl
+	u_byte         = 0
+	u_byte         = 0
+	name           = FF
+	description    = 03/10/13 23:29:00
+	descrip_strid  = 0
+	tstamp         = 30285287,189316048
+	ship_archetype = 2151746432
+	money          = 8246
+	system         = 2208738895
+	last_base      = 2786047490
+	u_dword        = 0
+	voice          = 2513602688
+	rank           = 5
+	u_float        = 0
+	u_float        = 1
+	u_float        = 0
+	u_float        = 0
+	u_dword        = 0
+	com_body       = 3144214861
+	com_head       = 2223155968
+	com_lefthand   = 2479975689
+	com_righthand  = 2264565644
+	body           = 3144214861
+	head           = 2223155968
+	lefthand       = 2479975689
+	righthand      = 2264565644
+	equip          = 2493263750, BAY, 1, 1, 0, 34
+	equip          = 3088051465, HpShield01, 1, 1, 0, 35
+	equip          = 2779996489, BAY, 1, 1, 0, 36
+	equip          = 2723858309, BAY, 1, 1, 0, 37
+	equip          = 3054838599, BAY, 1, 1, 0, 38
+	equip          = 2314753344, HpThruster01, 1, 1, 0, 39
+	equip          = 2260588618, HpWeapon01, 1, 1, 0, 40
+	equip          = 2260588618, HpWeapon02, 1, 1, 0, 41
+	equip          = 2797456458, HpWeapon03, 1, 1, 0, 42
+	equip          = 2265531853, HpHeadlight, 1, 1, 0, 43
+	equip          = 2802020621, HpRunningLight01, 1, 1, 0, 44
+	equip          = 2802020621, HpRunningLight02, 1, 1, 0, 45
+	equip          = 2802020621, HpRunningLight05, 1, 1, 0, 46
+	equip          = 2500775748, HpContrail01, 1, 1, 0, 47
+	equip          = 2500775748, HpContrail02, 1, 1, 0, 48
+	equip          = 2494027655, HpDocklight01, 1, 1, 0, 49
+	equip          = 2494027655, HpDocklight02, 1, 1, 0, 50
+	cargo          = 2596081674, BAY, 10, 1, 0, 51
+	cargo          = 2911012559, BAY, 8, 1, 0, 52
+	cargo          = 2777584775, BAY, 1, 1, 0, 53
+	cargo          = 3214855303, BAY, 1, 1, 0, 54
+	cargo          = 2522676160, BAY, 1, 1, 0, 55
+	col_group      = 4, 1
+	col_group      = 5, 1
+
+	u_dword        = 0
+
+23:34:55.118: FLPACKET_CLIENT_SELECTCHARACTER, offset = 0x3CE, size = 16
+              From: 1 "FF"
+	char = 02-3fc00078.fl
+
+23:34:55.118: FLPACKET_SERVER_PLAYERLIST, offset = 0x3EC, size = 10
+              To: 1 "FF"
+	command = 0
+	player  = 0
+	current = no
+
+23:34:55.118: FLPACKET_SERVER_PLAYERLIST, offset = 0x404, size = 16
+              To: 1 "FF"
+	command = 1 (new)
+	player  = 1 "FF"
+	current = no
+	name    = FF
+
+23:34:55.118: FLPACKET_SERVER_MISCOBJUPDATE, offset = 0x422, size = 10
+              To: 1 "FF"
+	flag    = 0x0005
+	player  = 1 "FF"
+	u_dword = 0
+
+23:34:55.118: FLPACKET_SERVER_MISCOBJUPDATE, offset = 0x43A, size = 8
+              To: 1 "FF"
+	flag    = 0x0044
+	player  = 1 "FF"
+	u_word  = 5
+
+23:34:55.118: FLPACKET_SERVER_MISCOBJUPDATE, offset = 0x450, size = 10
+              To: 1 "FF"
+	flag    = 0x0084
+	player  = 1 "FF"
+	system  = 2208738895
+
+23:34:55.118: FLPACKET_COMMON_SET_VISITED_STATE, offset = 0x468, size = 313
+              To: 1 "FF"
+	count = 61
+	visit =       2626, 65
+	visit =       8778, 65
+	visit =      15981, 65
+	visit =      30347, 65
+	visit =      32354, 65
+	visit =      33711, 65
+	visit =      47419, 65
+	visit = 2195730177,  1
+	visit = 2208796239,  1
+	visit = 2208818767,  1
+	visit = 2213392903, 41
+	visit = 2227016267,  1
+	visit = 2227042891,  1
+	visit = 2228185871,  1
+	visit = 2234786765,  1
+	visit = 2276262788,  1
+	visit = 2281116802,  1
+	visit = 2281145474,  1
+	visit = 2281172098,  1
+	visit = 2314528582, 41
+	visit = 2409040898,  1
+	visit = 2409063426,  1
+	visit = 2409077762,  1
+	visit = 2455255758,  1
+	visit = 2474438848,  1
+	visit = 2476692041,  1
+	visit = 2476714569,  1
+	visit = 2582366542,  1
+	visit = 2609851979,  1
+	visit = 2609858123,  1
+	visit = 2609888843,  1
+	visit = 2660772360,  1
+	visit = 2732610305,  1
+	visit = 2745633359,  1
+	visit = 2745692751,  1
+	visit = 2763855435,  1
+	visit = 2763910731,  1
+	visit = 2817982594,  1
+	visit = 2818009218,  1
+	visit = 2818046082,  1
+	visit = 2851103564, 41
+	visit = 2851160908, 41
+	visit = 2871476494,  1
+	visit = 2919364686, 41
+	visit = 2945914882,  1
+	visit = 2945937410,  1
+	visit = 2945943554,  1
+	visit = 2945966082,  1
+	visit = 3011255488,  1
+	visit = 3013328451,  1
+	visit = 3013559881,  1
+	visit = 3013590601,  1
+	visit = 3013596745,  1
+	visit = 3045840839, 31
+	visit = 3118456131,  1
+	visit = 3119242574,  1
+	visit = 3146732107,  1
+	visit = 3146754635,  1
+	visit = 3146760779,  1
+	visit = 3170783499,  1
+	visit = 3197728264,  1
+
+23:34:55.118: FLPACKET_COMMON_SET_WEAPON_GROUP, offset = 0x5AF, size = 61
+              To: 1 "FF"
+	wg = 0, HpWeapon01
+	wg = 0, HpWeapon02
+	wg = 0, HpWeapon03
+
+23:34:55.119: FLPACKET_COMMON_SET_MISSION_LOG, offset = 0x5FA, size = 12
+              To: 1 "FF"
+	count = 2
+	log   = 1
+	log   = 0
+
+23:34:55.119: FLPACKET_COMMON_SET_INTERFACE_STATE, offset = 0x614, size = 8
+              To: 1 "FF"
+	count     = 1
+	interface = 3
+
+23:34:55.119: FLPACKET_SERVER_SETREPUTATION, offset = 0x62A, size = 9
+              To: 1 "FF"
+	mask    = 0x00
+	object  = 1
+	faction = -1
+	rep     = 1.16057e+027
+
+23:34:55.119: FLPACKET_SERVER_CHARSELECTVERIFIED, offset = 0x641, size = 12
+              To: 1 "FF"
+	pilot = 1 "FF"
+	time  = 9.841525
+
+23:34:55.119: FLPACKET_SERVER_MISCOBJUPDATE, offset = 0x65B, size = 10
+              To: 1 "FF"
+	flag    = 0x0028
+	object  = 0
+	faction = -1
+
+23:34:55.120: FLPACKET_COMMON_CHATMSG, offset = 0x673, size = 162
+              To: 1 "FF"
+	TRA   = 0x00FF0090
+	mask  = 0xFFFFFFFF
+	text  = To get a list of available commands, type "/help" in chat.
+	to    = 1 "FF"
+	from  = Console
+
+23:34:55.691: FLPACKET_COMMON_REQUEST_PLAYER_STATS, offset = 0x723, size = 8
+              From: 1 "FF"
+	u_dword = 0
+
+23:34:55.691: FLPACKET_COMMON_REQUEST_PLAYER_STATS, offset = 0x739, size = 864
+              To: 1 "FF"
+	rm_completed      = 0
+	u_dword           = 0
+	rm_failed         = 0
+	u_dword           = 0
+	total_time_played = 58
+	systems_visited   = 1
+	bases_visited     = 1
+	holes_visited     = 0
+	rank              = 5
+	current_worth     = 30003
+	house             = -0.65,       42
+	house             =  0,          209
+	house             = -0.1,        552
+	house             = -0.3,        677
+	house             =  0,          2620
+	house             = -0.3,        2626
+	house             =  0,          2745
+	house             = -0.3,        3142
+	house             =  0,          3612
+	house             = -0.3,        3775
+	house             = -0.65,       3811
+	house             =  0,          4169
+	house             = -0.65,       5221
+	house             = -0.3,        6233
+	house             = -0.3,        6691
+	house             = -0.65,       7171
+	house             =  0,          8778
+	house             = -0.65,       9790
+	house             = -0.3,        10451
+	house             = -0.3,        11816
+	house             = -0.65,       12331
+	house             = -0.65,       12426
+	house             = -0.85,       12970
+	house             = -0.4,        13046
+	house             =  0,          14998
+	house             =  0,          15981
+	house             = -0.3,        18174
+	house             = -0.65,       18535
+	house             = -0.65,       18578
+	house             = -0.55,       19485
+	house             = -0.65,       20071
+	house             =  0,          21524
+	house             = -0.4,        21689
+	house             = -0.65,       22120
+	house             = -0.85,       22773
+	house             =  0,          23638
+	house             = -0.65,       25272
+	house             = -0.85,       25320
+	house             =  0,          26342
+	house             =  0,          26838
+	house             = -0.3,        27147
+	house             = -0.3,        27261
+	house             = -0.65,       28402
+	house             = -0.3,        29216
+	house             = -0.85,       29218
+	house             =  0,          30347
+	house             = -0.1,        30425
+	house             = -0.65,       30772
+	house             = -0.65,       31760
+	house             =  0,          32354
+	house             = -0.65,       32401
+	house             =  0,          33711
+	house             = -0.65,       34094
+	house             =  0,          34166
+	house             = -0.3,        34570
+	house             = -0.65,       36124
+	house             =  0,          36789
+	house             = -0.75,       36813
+	house             = -0.65,       37147
+	house             = -0.65,       37663
+	house             = -0.65,       37788
+	house             = -0.65,       39209
+	house             = -0.5,        41274
+	house             = -0.1,        41933
+	house             = -0.65,       42296
+	house             = -0.4,        42810
+	house             = -0.3,        43384
+	house             = -0.3,        44322
+	house             = -0.65,       44963
+	house             =  0,          45049
+	house             = -0.65,       45353
+	house             = -0.65,       45964
+	house             =  0,          47419
+	house             = -0.65,       47516
+	house             = -0.65,       48022
+	house             = -0.65,       48542
+	house             =  0,          49441
+	house             = -0.65,       49925
+	house             = -0.3,        51565
+	house             = -0.15,       51614
+	house             = -0.65,       52208
+	house             = -0.65,       53659
+	house             =  0,          53681
+	house             =  0,          53733
+	house             = -0.65,       55088
+	house             = -0.1,        55100
+	house             = -0.3,        55219
+	house             = -0.65,       56195
+	house             = -0.65,       56277
+	house             =  0,          56582
+	house             = -0.65,       56711
+	house             = -0.3,        57102
+	house             = -0.65,       57655
+	house             = -0.3,        57826
+	house             = -0.1,        58161
+	house             = -0.75,       59767
+	house             = -0.3,        59773
+	house             = -0.65,       61778
+	house             =  0,          62250
+	house             = -0.65,       64822
+	house             = -0.65,       65354
+
+23:34:55.691: FLPACKET_CLIENT_ENTERBASE, offset = 0xAA7, size = 4
+              From: 1 "FF"
+	base = 2786047490
+
+23:34:55.707: FLPACKET_SERVER_GFMISSIONVENDORWHYEMPTY, offset = 0xAB9, size = 1
+              To: 1 "FF"
+	reason = 0
+
+23:34:55.707: FLPACKET_CLIENT_REQUESTBASEINFO, offset = 0xAC8, size = 5
+              From: 1 "FF"
+	base = 2786047490
+	type = enter
+
+23:34:55.707: FLPACKET_SERVER_SETSTARTROOM, offset = 0xADB, size = 8
+              To: 1 "FF"
+	base = 2786047490
+	room = 2703160513
+
+23:34:55.707: FLPACKET_SERVER_GFUPDATEMISSIONCOMPUTER, offset = 0xAF1, size = 154
+              To: 1 "FF"
+	size     = 150
+	counter  = 1
+	base     = 2786047490
+	index    = 1
+	u_dword  = 2
+	type     = 5 (Capture Prisoner)
+	resource = 1844
+	type     = %S0 -> 2208738895
+	resource = 1834
+	type     = %s0 -> 196848
+	resource = 327681
+	type     = %!0
+	resource = 327682
+	type     = %d0 -> 3
+	type     = %d1 -> 48500
+	type     = %!1
+	resource = 327804
+	type     = %s0 -> 226735
+	type     = %s1 -> 227051
+	type     = %!2
+	resource = 327805
+	type     = %Z0 -> 36
+	type     = %!3
+	resource = 327806
+	type     = %L0 -> 0
+	type     = %!4
+	resource = 327807
+	type     = %B0 -> 2786047490
+	reward   = 48500
+
+23:34:55.707: FLPACKET_SERVER_GFUPDATEMISSIONCOMPUTER, offset = 0xB99, size = 131
+              To: 1 "FF"
+	size     = 127
+	counter  = 2
+	base     = 2786047490
+	index    = 2
+	u_dword  = 2
+	type     = 1 (Kill Ships)
+	resource = 1844
+	type     = %S0 -> 2208738895
+	resource = 1834
+	type     = %s0 -> 196848
+	resource = 327681
+	type     = %!0
+	resource = 327682
+	type     = %d0 -> 1
+	type     = %d1 -> 10500
+	type     = %!1
+	resource = 327979
+	type     = %F0 -> 57826
+	type     = %!2
+	resource = 327980
+	type     = %Z0 -> 3104512771
+	type     = %!3
+	resource = 327831
+	type     = %Z0 -> 3104512771
+	reward   = 10500
+
+23:34:55.707: FLPACKET_SERVER_GFUPDATEMISSIONCOMPUTER, offset = 0xC2A, size = 170
+              To: 1 "FF"
+	size     = 166
+	counter  = 3
+	base     = 2786047490
+	index    = 3
+	u_dword  = 2
+	type     = 3 (Assassinate)
+	resource = 1844
+	type     = %S0 -> 2208738895
+	resource = 1834
+	type     = %s0 -> 196848
+	resource = 327681
+	type     = %!0
+	resource = 327682
+	type     = %d0 -> 8
+	type     = %d1 -> 98000
+	type     = %!1
+	resource = 327972
+	type     = %F0 -> 42810
+	type     = %!2
+	resource = 327973
+	type     = %s0 -> 229221
+	type     = %s1 -> 229449
+	type     = %!3
+	resource = 327974
+	type     = %Z0 -> 28
+	type     = %!4
+	resource = 327975
+	type     = %F0 -> 33711
+	type     = %!5
+	resource = 327977
+	type     = %I0 -> 1
+	reward   = 98000
+
+23:34:55.707: FLPACKET_SERVER_GFUPDATEMISSIONCOMPUTER, offset = 0xCE2, size = 124
+              To: 1 "FF"
+	size     = 120
+	counter  = 4
+	base     = 2786047490
+	index    = 4
+	u_dword  = 2
+	type     = 1 (Kill Ships)
+	resource = 1844
+	type     = %S0 -> 2208738895
+	resource = 1834
+	type     = %s0 -> 196848
+	resource = 327681
+	type     = %!0
+	resource = 327682
+	type     = %d0 -> 1
+	type     = %d1 -> 20500
+	type     = %!1
+	resource = 327979
+	type     = %F0 -> 28402
+	type     = %!2
+	resource = 327980
+	type     = %Z0 -> 27
+	type     = %!3
+	resource = 327982
+	reward   = 20500
+
+23:34:55.707: FLPACKET_SERVER_GFUPDATEMISSIONCOMPUTER, offset = 0xD6C, size = 124
+              To: 1 "FF"
+	size     = 120
+	counter  = 5
+	base     = 2786047490
+	index    = 5
+	u_dword  = 2
+	type     = 1 (Kill Ships)
+	resource = 1844
+	type     = %S0 -> 2208738895
+	resource = 1834
+	type     = %s0 -> 196848
+	resource = 327681
+	type     = %!0
+	resource = 327682
+	type     = %d0 -> 1
+	type     = %d1 -> 11500
+	type     = %!1
+	resource = 327979
+	type     = %F0 -> 28402
+	type     = %!2
+	resource = 327980
+	type     = %Z0 -> 2523167744
+	type     = %!3
+	resource = 328135
+	reward   = 11500
+
+23:34:55.707: FLPACKET_SERVER_GFUPDATEMISSIONCOMPUTER, offset = 0xDF6, size = 154
+              To: 1 "FF"
+	size     = 150
+	counter  = 6
+	base     = 2786047490
+	index    = 6
+	u_dword  = 2
+	type     = 3 (Assassinate)
+	resource = 1844
+	type     = %S0 -> 2208738895
+	resource = 1834
+	type     = %s0 -> 196848
+	resource = 327681
+	type     = %!0
+	resource = 327682
+	type     = %d0 -> 1
+	type     = %d1 -> 25500
+	type     = %!1
+	resource = 328125
+	type     = %F0 -> 36813
+	type     = %!2
+	resource = 328126
+	type     = %s0 -> 226684
+	type     = %s1 -> 227048
+	type     = %!3
+	resource = 328127
+	type     = %Z0 -> 2523167744
+	type     = %!4
+	resource = 328128
+	type     = %F0 -> 33711
+	reward   = 25500
+
+23:34:55.708: FLPACKET_SERVER_GFUPDATEMISSIONCOMPUTER, offset = 0xE9E, size = 131
+              To: 1 "FF"
+	size     = 127
+	counter  = 7
+	base     = 2786047490
+	index    = 7
+	u_dword  = 2
+	type     = 1 (Kill Ships)
+	resource = 1844
+	type     = %S0 -> 2208738895
+	resource = 1834
+	type     = %s0 -> 196848
+	resource = 327681
+	type     = %!0
+	resource = 327682
+	type     = %d0 -> 1
+	type     = %d1 -> 13500
+	type     = %!1
+	resource = 327979
+	type     = %F0 -> 57826
+	type     = %!2
+	resource = 327980
+	type     = %Z0 -> 34
+	type     = %!3
+	resource = 327831
+	type     = %Z0 -> 34
+	reward   = 13500
+
+23:34:55.708: FLPACKET_SERVER_GFUPDATEMISSIONCOMPUTER, offset = 0xF2F, size = 154
+              To: 1 "FF"
+	size     = 150
+	counter  = 8
+	base     = 2786047490
+	index    = 8
+	u_dword  = 2
+	type     = 5 (Capture Prisoner)
+	resource = 1844
+	type     = %S0 -> 2208738895
+	resource = 1834
+	type     = %s0 -> 196848
+	resource = 327681
+	type     = %!0
+	resource = 327682
+	type     = %d0 -> 4
+	type     = %d1 -> 57000
+	type     = %!1
+	resource = 327804
+	type     = %s0 -> 226696
+	type     = %s1 -> 227123
+	type     = %!2
+	resource = 327805
+	type     = %Z0 -> 35
+	type     = %!3
+	resource = 327806
+	type     = %L0 -> 0
+	type     = %!4
+	resource = 327807
+	type     = %B0 -> 2786047490
+	reward   = 57000
+
+23:34:55.708: FLPACKET_SERVER_GFCOMPLETEMISSIONCOMPUTERLIST, offset = 0xFD7, size = 4
+              To: 1 "FF"
+	base = 2786047490
+
+23:34:55.708: FLPACKET_SERVER_GFUPDATENEWSBROADCAST, offset = 0xFE9, size = 58
+              To: 1 "FF"
+	size     = 54
+	newsid   = 1
+	base     = 2786047490
+	u_word   = 0
+	icon     = 2 (world)
+	category = 460160
+	headline = 460160
+	text     = 460161
+	logo     = news_system_li
+	u_dword  = 2807657931
+
+23:34:55.708: FLPACKET_SERVER_GFUPDATENEWSBROADCAST, offset = 0x1031, size = 55
+              To: 1 "FF"
+	size     = 51
+	newsid   = 2
+	base     = 2786047490
+	u_word   = 0
+	icon     = 4 (system)
+	category = 460158
+	headline = 460158
+	text     = 460159
+	logo     = news_prison
+	u_dword  = 2807657931
+
+23:34:55.708: FLPACKET_SERVER_GFUPDATENEWSBROADCAST, offset = 0x1076, size = 54
+              To: 1 "FF"
+	size     = 50
+	newsid   = 3
+	base     = 2786047490
+	u_word   = 0
+	icon     = 2 (world)
+	category = 460150
+	headline = 460150
+	text     = 460151
+	logo     = news_junyo
+	u_dword  = 2807657931
+
+23:34:55.708: FLPACKET_SERVER_GFUPDATENEWSBROADCAST, offset = 0x10BA, size = 53
+              To: 1 "FF"
+	size     = 49
+	newsid   = 4
+	base     = 2786047490
+	u_word   = 0
+	icon     = 5 (faction)
+	category = 460146
+	headline = 460146
+	text     = 460147
+	logo     = news_bw02
+	u_dword  = 2807657931
+
+23:34:55.708: FLPACKET_SERVER_GFCOMPLETENEWSBROADCASTLIST, offset = 0x10FD, size = 4
+              To: 1 "FF"
+	base = 2786047490
+
+23:34:55.752: FLPACKET_CLIENT_ENTERLOCATION, offset = 0x110F, size = 4
+              From: 1 "FF"
+	room = 2703160513
+
+23:34:55.752: FLPACKET_CLIENT_REQUESTLOCATIONINFO, offset = 0x1121, size = 5
+              From: 1 "FF"
+	room = 2703160513
+	type = enter
+
+23:34:55.752: FLPACKET_SERVER_GFUPDATECHAR, offset = 0x1134, size = 108
+              To: 1 "FF"
+	size       = 104
+	charid     = 6
+	player     = yes
+	room       = 2703160513
+	name       = 0
+	faction    = -1
+	name       = FF
+	head       = 2223155968
+	body       = 3144214861
+	lefthand   = 2479975689
+	righthand  = 2264565644
+	script     = scripts\extras\player_fidget.thn
+	behaviorid = -1
+	player     = yes
+	posture    = stand
+	voice      = 2513602688
+
+23:34:55.752: FLPACKET_SERVER_GFCOMPLETECHARLIST, offset = 0x11AE, size = 4
+              To: 1 "FF"
+	room = 2703160513
+
+23:34:55.752: FLPACKET_SERVER_GFCOMPLETESCRIPTBEHAVIORLIST, offset = 0x11C0, size = 4
+              To: 1 "FF"
+	room = 2703160513
+
+23:34:55.752: FLPACKET_SERVER_GFCOMPLETEAMBIENTSCRIPTLIST, offset = 0x11D2, size = 4
+              To: 1 "FF"
+	room = 2703160513
+
+23:34:58.983: FLPACKET_CLIENT_REQUESTLOCATIONINFO, offset = 0x11E4, size = 5
+              From: 1 "FF"
+	room = 2703160513
+	type = exit
+
+23:34:58.983: FLPACKET_CLIENT_EXITLOCATION, offset = 0x11F7, size = 4
+              From: 1 "FF"
+	room = 2703160513
+
+23:34:58.983: FLPACKET_CLIENT_ENTERLOCATION, offset = 0x1209, size = 4
+              From: 1 "FF"
+	room = 2437047618
+
+23:34:58.984: FLPACKET_CLIENT_REQUESTLOCATIONINFO, offset = 0x121B, size = 5
+              From: 1 "FF"
+	room = 2437047618
+	type = enter
+
+23:34:58.984: FLPACKET_SERVER_GFUPDATECHAR, offset = 0x122E, size = 140
+              To: 1 "FF"
+	size       = 136
+	charid     = 4
+	player     = no
+	room       = 2437047618
+	name       = 525652
+	faction    = 33711
+	head       = 3135775179
+	body       = 2847243649
+	lefthand   = 2479975689
+	righthand  = 2264565644
+	script     = scripts\vendors\li_shipdealer_fidget.thn
+	behaviorid = -1
+	location   = Zs/NPC/Shipdealer/01/A/Stand
+	player     = no
+	posture    = stand
+	voice      = 2420626765
+
+23:34:58.984: FLPACKET_SERVER_GFUPDATECHAR, offset = 0x12C8, size = 108
+              To: 1 "FF"
+	size       = 104
+	charid     = 7
+	player     = yes
+	room       = 2437047618
+	name       = 0
+	faction    = -1
+	name       = FF
+	head       = 2223155968
+	body       = 3144214861
+	lefthand   = 2479975689
+	righthand  = 2264565644
+	script     = scripts\extras\player_fidget.thn
+	behaviorid = -1
+	player     = yes
+	posture    = stand
+	voice      = 2513602688
+
+23:34:58.984: FLPACKET_SERVER_GFCOMPLETECHARLIST, offset = 0x1342, size = 4
+              To: 1 "FF"
+	room = 2437047618
+
+23:34:58.984: FLPACKET_SERVER_GFCOMPLETESCRIPTBEHAVIORLIST, offset = 0x1354, size = 4
+              To: 1 "FF"
+	room = 2437047618
+
+23:34:58.984: FLPACKET_SERVER_GFCOMPLETEAMBIENTSCRIPTLIST, offset = 0x1366, size = 4
+              To: 1 "FF"
+	room = 2437047618
+
+23:34:58.985: FLPACKET_SERVER_GFUPDATECHAR, offset = 0x1378, size = 140
+              To: 1 "FF"
+	size       = 136
+	charid     = 4
+	player     = no
+	room       = 2437047618
+	name       = 525652
+	faction    = 33711
+	head       = 3135775179
+	body       = 2847243649
+	lefthand   = 2479975689
+	righthand  = 2264565644
+	script     = scripts\vendors\li_shipdealer_fidget.thn
+	behaviorid = -1
+	location   = Zs/NPC/Shipdealer/01/A/Stand
+	player     = no
+	posture    = stand
+	voice      = 2420626765
+
+23:35:05.884: FLPACKET_COMMON_CHATMSG, offset = 0x1412, size = 74
+              From: 1 "FF"
+	style = 0xD801
+	text  = .setcash$ 1 999999999
+	to    = System
+	from  = Console
+
+23:35:05.884: FLPACKET_COMMON_CHATMSG, offset = 0x146A, size = 122
+              To: 1 "FF"
+	TRA   = 0xFFFFFF00
+	mask  = 0xFFFFFFFF
+	text  = FF: 
+	TRA   = 0xE6C68400
+	mask  = 0xFFFFFFFF
+	text  = .setcash$ 1 999999999
+	to    = 1 "FF"
+	from  = Console
+
+23:35:19.885: FLPACKET_COMMON_CHATMSG, offset = 0x14F2, size = 74
+              From: 1 "FF"
+	style = 0xD801
+	text  = .setcash$ 1 999999999
+	to    = System
+	from  = Console
+
+23:35:19.885: FLPACKET_SERVER_SETCASH, offset = 0x154A, size = 4
+              To: 1 "FF"
+	money = 999999999
+
+23:35:19.885: FLPACKET_SERVER_MISCOBJUPDATE, offset = 0x155C, size = 8
+              To: 1 "FF"
+	flag    = 0x0044
+	player  = 1 "FF"
+	u_word  = 89
+
+23:35:19.885: FLPACKET_COMMON_CHATMSG, offset = 0x1572, size = 74
+              To: 1 "FF"
+	TRA   = 0x00FF0090
+	mask  = 0xFFFFFFFF
+	text  = cash=999999999
+	to    = 1 "FF"
+	from  = Console
+
+23:35:19.885: FLPACKET_COMMON_CHATMSG, offset = 0x15CA, size = 50
+              To: 1 "FF"
+	TRA   = 0x00FF0090
+	mask  = 0xFFFFFFFF
+	text  = OK
+	to    = 1 "FF"
+	from  = Console
+
+23:35:22.348: FLPACKET_COMMON_REQUEST_PLAYER_STATS, offset = 0x160A, size = 8
+              From: 1 "FF"
+	u_dword = 0
+
+23:35:22.348: FLPACKET_COMMON_REQUEST_PLAYER_STATS, offset = 0x1620, size = 864
+              To: 1 "FF"
+	rm_completed      = 0
+	u_dword           = 0
+	rm_failed         = 0
+	u_dword           = 0
+	total_time_played = 85
+	systems_visited   = 1
+	bases_visited     = 1
+	holes_visited     = 0
+	rank              = 89
+	current_worth     = 1000021756
+	house             = -0.65,       42
+	house             =  0,          209
+	house             = -0.1,        552
+	house             = -0.3,        677
+	house             =  0,          2620
+	house             = -0.3,        2626
+	house             =  0,          2745
+	house             = -0.3,        3142
+	house             =  0,          3612
+	house             = -0.3,        3775
+	house             = -0.65,       3811
+	house             =  0,          4169
+	house             = -0.65,       5221
+	house             = -0.3,        6233
+	house             = -0.3,        6691
+	house             = -0.65,       7171
+	house             =  0,          8778
+	house             = -0.65,       9790
+	house             = -0.3,        10451
+	house             = -0.3,        11816
+	house             = -0.65,       12331
+	house             = -0.65,       12426
+	house             = -0.85,       12970
+	house             = -0.4,        13046
+	house             =  0,          14998
+	house             =  0,          15981
+	house             = -0.3,        18174
+	house             = -0.65,       18535
+	house             = -0.65,       18578
+	house             = -0.55,       19485
+	house             = -0.65,       20071
+	house             =  0,          21524
+	house             = -0.4,        21689
+	house             = -0.65,       22120
+	house             = -0.85,       22773
+	house             =  0,          23638
+	house             = -0.65,       25272
+	house             = -0.85,       25320
+	house             =  0,          26342
+	house             =  0,          26838
+	house             = -0.3,        27147
+	house             = -0.3,        27261
+	house             = -0.65,       28402
+	house             = -0.3,        29216
+	house             = -0.85,       29218
+	house             =  0,          30347
+	house             = -0.1,        30425
+	house             = -0.65,       30772
+	house             = -0.65,       31760
+	house             =  0,          32354
+	house             = -0.65,       32401
+	house             =  0,          33711
+	house             = -0.65,       34094
+	house             =  0,          34166
+	house             = -0.3,        34570
+	house             = -0.65,       36124
+	house             =  0,          36789
+	house             = -0.75,       36813
+	house             = -0.65,       37147
+	house             = -0.65,       37663
+	house             = -0.65,       37788
+	house             = -0.65,       39209
+	house             = -0.5,        41274
+	house             = -0.1,        41933
+	house             = -0.65,       42296
+	house             = -0.4,        42810
+	house             = -0.3,        43384
+	house             = -0.3,        44322
+	house             = -0.65,       44963
+	house             =  0,          45049
+	house             = -0.65,       45353
+	house             = -0.65,       45964
+	house             =  0,          47419
+	house             = -0.65,       47516
+	house             = -0.65,       48022
+	house             = -0.65,       48542
+	house             =  0,          49441
+	house             = -0.65,       49925
+	house             = -0.3,        51565
+	house             = -0.15,       51614
+	house             = -0.65,       52208
+	house             = -0.65,       53659
+	house             =  0,          53681
+	house             =  0,          53733
+	house             = -0.65,       55088
+	house             = -0.1,        55100
+	house             = -0.3,        55219
+	house             = -0.65,       56195
+	house             = -0.65,       56277
+	house             =  0,          56582
+	house             = -0.65,       56711
+	house             = -0.3,        57102
+	house             = -0.65,       57655
+	house             = -0.3,        57826
+	house             = -0.1,        58161
+	house             = -0.75,       59767
+	house             = -0.3,        59773
+	house             = -0.65,       61778
+	house             =  0,          62250
+	house             = -0.65,       64822
+	house             = -0.65,       65354
+
+23:35:22.349: FLPACKET_COMMON_REQUEST_RANK_LEVEL, offset = 0x198E, size = 8
+              From: 1 "FF"
+	0000: 04 00 00 00 00 00 00 00                           ........
+
+23:35:22.349: FLPACKET_COMMON_REQUEST_RANK_LEVEL, offset = 0x19A4, size = 8
+              To: 1 "FF"
+	0000: 04 00 00 00 FF FF FF FF                           ....ÿÿÿÿ
+
+23:35:24.795: FLPACKET_COMMON_REQUEST_RANK_LEVEL, offset = 0x19BA, size = 8
+              From: 1 "FF"
+	0000: 04 00 00 00 00 00 00 00                           ........
+
+23:35:24.795: FLPACKET_COMMON_REQUEST_RANK_LEVEL, offset = 0x19D0, size = 8
+              To: 1 "FF"
+	0000: 04 00 00 00 FF FF FF FF                           ....ÿÿÿÿ
+
+23:35:24.795: FLPACKET_COMMON_REQUEST_PLAYER_STATS, offset = 0x19E6, size = 8
+              From: 1 "FF"
+	u_dword = 0
+
+23:35:24.795: FLPACKET_COMMON_REQUEST_PLAYER_STATS, offset = 0x19FC, size = 864
+              To: 1 "FF"
+	rm_completed      = 0
+	u_dword           = 0
+	rm_failed         = 0
+	u_dword           = 0
+	total_time_played = 87
+	systems_visited   = 1
+	bases_visited     = 1
+	holes_visited     = 0
+	rank              = 89
+	current_worth     = 1000021756
+	house             = -0.65,       42
+	house             =  0,          209
+	house             = -0.1,        552
+	house             = -0.3,        677
+	house             =  0,          2620
+	house             = -0.3,        2626
+	house             =  0,          2745
+	house             = -0.3,        3142
+	house             =  0,          3612
+	house             = -0.3,        3775
+	house             = -0.65,       3811
+	house             =  0,          4169
+	house             = -0.65,       5221
+	house             = -0.3,        6233
+	house             = -0.3,        6691
+	house             = -0.65,       7171
+	house             =  0,          8778
+	house             = -0.65,       9790
+	house             = -0.3,        10451
+	house             = -0.3,        11816
+	house             = -0.65,       12331
+	house             = -0.65,       12426
+	house             = -0.85,       12970
+	house             = -0.4,        13046
+	house             =  0,          14998
+	house             =  0,          15981
+	house             = -0.3,        18174
+	house             = -0.65,       18535
+	house             = -0.65,       18578
+	house             = -0.55,       19485
+	house             = -0.65,       20071
+	house             =  0,          21524
+	house             = -0.4,        21689
+	house             = -0.65,       22120
+	house             = -0.85,       22773
+	house             =  0,          23638
+	house             = -0.65,       25272
+	house             = -0.85,       25320
+	house             =  0,          26342
+	house             =  0,          26838
+	house             = -0.3,        27147
+	house             = -0.3,        27261
+	house             = -0.65,       28402
+	house             = -0.3,        29216
+	house             = -0.85,       29218
+	house             =  0,          30347
+	house             = -0.1,        30425
+	house             = -0.65,       30772
+	house             = -0.65,       31760
+	house             =  0,          32354
+	house             = -0.65,       32401
+	house             =  0,          33711
+	house             = -0.65,       34094
+	house             =  0,          34166
+	house             = -0.3,        34570
+	house             = -0.65,       36124
+	house             =  0,          36789
+	house             = -0.75,       36813
+	house             = -0.65,       37147
+	house             = -0.65,       37663
+	house             = -0.65,       37788
+	house             = -0.65,       39209
+	house             = -0.5,        41274
+	house             = -0.1,        41933
+	house             = -0.65,       42296
+	house             = -0.4,        42810
+	house             = -0.3,        43384
+	house             = -0.3,        44322
+	house             = -0.65,       44963
+	house             =  0,          45049
+	house             = -0.65,       45353
+	house             = -0.65,       45964
+	house             =  0,          47419
+	house             = -0.65,       47516
+	house             = -0.65,       48022
+	house             = -0.65,       48542
+	house             =  0,          49441
+	house             = -0.65,       49925
+	house             = -0.3,        51565
+	house             = -0.15,       51614
+	house             = -0.65,       52208
+	house             = -0.65,       53659
+	house             =  0,          53681
+	house             =  0,          53733
+	house             = -0.65,       55088
+	house             = -0.1,        55100
+	house             = -0.3,        55219
+	house             = -0.65,       56195
+	house             = -0.65,       56277
+	house             =  0,          56582
+	house             = -0.65,       56711
+	house             = -0.3,        57102
+	house             = -0.65,       57655
+	house             = -0.3,        57826
+	house             = -0.1,        58161
+	house             = -0.75,       59767
+	house             = -0.3,        59773
+	house             = -0.65,       61778
+	house             =  0,          62250
+	house             = -0.65,       64822
+	house             = -0.65,       65354
+
+23:35:25.918: FLPACKET_CLIENT_GFGOODBUY, offset = 0x1D6A, size = 16
+              From: 1 "FF"
+	base     = 2786047490
+	u_dword  = 0
+	good     = 2209237640
+	quantity = 1
+
+23:35:25.918: FLPACKET_CLIENT_REQCOLLISIONGROUPS, offset = 0x1D88, size = 14
+              From: 1 "FF"
+	group  = 4
+	health = 1
+	group  = 5
+	health = 1
+
+23:35:25.918: FLPACKET_SERVER_SETCOLLISIONGROUPS, offset = 0x1DA4, size = 14
+              To: 1 "FF"
+	group  = 4
+	health = 1
+	group  = 5
+	health = 1
+
+23:35:25.918: FLPACKET_CLIENT_REQSETCASH, offset = 0x1DC0, size = 4
+              From: 1 "FF"
+	money = 999988399
+
+23:35:25.918: FLPACKET_SERVER_SETCASH, offset = 0x1DD2, size = 4
+              To: 1 "FF"
+	money = 999988399
+
+23:35:25.918: FLPACKET_CLIENT_REQEQUIPMENT, offset = 0x1DE4, size = 607
+              From: 1 "FF"
+	equip = 2180305863, , 1, 1, 0, 0
+	equip = 3217051656, , 1, 1, 0, 0
+	equip = 3088051465, HpShield01, 1, 1, 0, 0
+	equip = 2723858309, , 1, 1, 0, 0
+	equip = 2265531853, HpHeadlight, 1, 1, 0, 0
+	equip = 2470059588, HpRunningLight01, 1, 1, 0, 0
+	equip = 2470059588, HpRunningLight02, 1, 1, 0, 0
+	equip = 2470059588, HpRunningLight03, 1, 1, 0, 0
+	equip = 2470059588, HpRunningLight04, 1, 1, 0, 0
+	equip = 2494027655, HpDocklight01, 1, 1, 0, 0
+	equip = 2494027655, HpDocklight02, 1, 1, 0, 0
+	equip = 2500775748, HpContrail01, 1, 1, 0, 0
+	equip = 2500775748, HpContrail02, 1, 1, 0, 0
+	equip = 2797456458, HpWeapon01, 1, 1, 0, 42
+	cargo = 3088051465, , 1, 1, 0, 35
+	equip = 2314753344, HpThruster01, 1, 1, 0, 39
+	equip = 2260588618, HpWeapon02, 1, 1, 0, 40
+	equip = 2260588618, HpWeapon03, 1, 1, 0, 41
+	cargo = 2911012559, , 8, 1, 0, 52
+	cargo = 2596081674, , 10, 1, 0, 51
+	cargo = 2522676160, , 1, 1, 0, 55
+	cargo = 2777584775, , 1, 1, 0, 53
+	cargo = 3214855303, , 1, 1, 0, 54
+
+23:35:25.919: FLPACKET_SERVER_SETEQUIPMENT, offset = 0x2051, size = 607
+              To: 1 "FF"
+	equip = 2180305863, , 1, 1, 0, 78
+	equip = 3217051656, , 1, 1, 0, 79
+	equip = 3088051465, HpShield01, 1, 1, 0, 80
+	equip = 2723858309, , 1, 1, 0, 81
+	equip = 2265531853, HpHeadlight, 1, 1, 0, 82
+	equip = 2470059588, HpRunningLight01, 1, 1, 0, 83
+	equip = 2470059588, HpRunningLight02, 1, 1, 0, 84
+	equip = 2470059588, HpRunningLight03, 1, 1, 0, 85
+	equip = 2470059588, HpRunningLight04, 1, 1, 0, 86
+	equip = 2494027655, HpDocklight01, 1, 1, 0, 87
+	equip = 2494027655, HpDocklight02, 1, 1, 0, 88
+	equip = 2500775748, HpContrail01, 1, 1, 0, 89
+	equip = 2500775748, HpContrail02, 1, 1, 0, 90
+	equip = 2797456458, HpWeapon01, 1, 1, 0, 42
+	cargo = 3088051465, , 1, 1, 0, 35
+	equip = 2314753344, HpThruster01, 1, 1, 0, 39
+	equip = 2260588618, HpWeapon02, 1, 1, 0, 40
+	equip = 2260588618, HpWeapon03, 1, 1, 0, 41
+	cargo = 2911012559, , 8, 1, 0, 52
+	cargo = 2596081674, , 10, 1, 0, 51
+	cargo = 2522676160, , 1, 1, 0, 55
+	cargo = 2777584775, , 1, 1, 0, 53
+	cargo = 3214855303, , 1, 1, 0, 54
+
+23:35:25.919: FLPACKET_CLIENT_REQSHIPARCH, offset = 0x22BE, size = 4
+              From: 1 "FF"
+	shiparch = 3061930880
+
+23:35:25.919: FLPACKET_SERVER_SETSHIPARCH, offset = 0x22D0, size = 4
+              To: 1 "FF"
+	shiparch = 3061930880
+
+23:35:25.919: FLPACKET_CLIENT_REQHULLSTATUS, offset = 0x22E2, size = 4
+              From: 1 "FF"
+	health = 1
+
+23:35:25.919: FLPACKET_SERVER_SETHULLSTATUS, offset = 0x22F4, size = 4
+              To: 1 "FF"
+	health = 1
+
+23:35:25.919: FLPACKET_COMMON_SET_WEAPON_GROUP, offset = 0x2306, size = 5
+              From: 1 "FF"
+	
+
+23:35:31.413: FLPACKET_CLIENT_REQUESTLOCATIONINFO, offset = 0x2319, size = 5
+              From: 1 "FF"
+	room = 2437047618
+	type = exit
+
+23:35:31.413: FLPACKET_CLIENT_EXITLOCATION, offset = 0x232C, size = 4
+              From: 1 "FF"
+	room = 2437047618
+
+23:35:31.413: FLPACKET_CLIENT_REQUESTBASEINFO, offset = 0x233E, size = 5
+              From: 1 "FF"
+	base = 2786047490
+	type = exit
+
+23:35:31.413: FLPACKET_CLIENT_EXITBASE, offset = 0x2351, size = 4
+              From: 1 "FF"
+	base = 2786047490
+
